@@ -1,0 +1,28 @@
+<div class="container mt-4 justify-content-center">
+  <h2>Transactions</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">IBAN</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Transaction</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+      <tr>
+        <td>{{transaction.account.iban}}</td>
+        <td>{{transaction.date}}</td>
+        {% if transaction.transaction_type == 'DEPOSIT'%}
+        <td class="text-success">{{ transaction.amount }}</td>
+        {% else %}
+        <td class="text-danger">-{{transaction.amount}}</td>
+        {% endif %}
+        <td>{{transaction.transaction_type}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

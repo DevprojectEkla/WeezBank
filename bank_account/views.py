@@ -1,44 +1,16 @@
 from decimal import Decimal
-from django import forms
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.contrib.auth.decorators import login_required
-from .models import BankAccount, Customer, Transaction, generate_iban
+
+from .forms import CreateAccountForm, SignUpForm, TransactionForm
+from .models import BankAccount, Customer, Transaction
 
 
 # Create your views here.
-class CreateAccountForm(forms.ModelForm):
-    class Meta:
-        model = BankAccount
-        fields = ["iban", "balance"]
-
-    def __init__(self, *args, **kwargs):
-        super(CreateAccountForm, self).__init__(*args, **kwargs)
-        if "instance" not in kwargs:
-            self.fields["iban"].initial = generate_iban()
-
-
-class TransactionForm(forms.ModelForm):
-    class Meta:
-        model = Transaction
-        fields =  ['transaction_type','amount']
-
-
-class SignUpForm(UserCreationForm):
-    email = forms.EmailField(
-        max_length=254,
-        required=True,
-        help_text="Required. Enter a valid email address.",
-    )
-
-    class Meta:
-        model = User
-        fields = ("username", "email", "password1", "password2")
 
 
 @login_required(login_url="login")
@@ -67,6 +39,7 @@ def create_account(req):
 def account_detail(req, account_id):
     form = TransactionForm()
     account = get_object_or_404(BankAccount, id=account_id)
+    transactions = Transaction.objects.filter(account=account)
     if req.method == "POST":
         form = TransactionForm(req.POST)
         if form.is_valid():
@@ -79,13 +52,13 @@ def account_detail(req, account_id):
                 print("new balance:", account.balance)
                 account.save()
                 form.save()
-            elif req.POST["transaction_type"] == "WITHDRAW":
+            elif req.POST["transaction_type"] == "WITHDRAWAL":
                 account.balance -= Decimal(req.POST["amount"])
                 transaction = form.save(commit=False)
                 transaction.account = account
                 account.save()
                 form.save()
-    return render(req, "accounts/detail.html", {"form": form, "account": account})
+    return render(req, "accounts/detail.html", {"form": form, "account": account, "transactions":transactions})
 
 
 def index(req):
