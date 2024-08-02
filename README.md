@@ -131,6 +131,7 @@ The main purpose of this application is to demonstrate my ability to use Django 
 4. **Apply the migrations**:
 
    ```bash
+   python manage.py makemigrations
    python manage.py migrate
    ```
 
@@ -169,7 +170,7 @@ This application uses Django's built-in authentication system to handle user reg
 
 ## Future Enhancements
 
-- Implement a RESTful API using Django REST Framework to allow integration with other services or a React frontend.
+- Developing a React client to interact with the API.
 - Integrate more detailed transaction tracking and reporting features.
 - Implement unit tests to ensure application reliability and correctness.
 
