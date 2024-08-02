@@ -1,6 +1,6 @@
 # Bank Account Management Application
 
-This project is a basic Django application that simulates the creation and management of bank accounts. It is designed to showcase my use of Django for building web applications.
+This project is a basic Django application that simulates the creation and management of bank accounts. It is designed to showcase my use of Django for building web applications and the Django REST framework to build RESTful APIs.
 
 ## Features
 
@@ -9,9 +9,83 @@ This project is a basic Django application that simulates the creation and manag
 - **Account Management**: Users can view details of existing accounts, update account information, and manage account balances.
 - **Transaction History**: Basic functionality to track deposits, withdrawals, and transfers between accounts.
 - **User Authentication**: Users can log in and log out using Django's built-in authentication system.
+- **RESTful API**: Provides endpoints for interacting with bank accounts, users, and customers via a RESTful API using Django REST Framework.
+
 ## Preview
 
-![Preview Image](static/img/sample.png)
+![Preview App](static/img/sample.png)
+
+## API Endpoints
+
+The API provides the following endpoints:
+
+![Preview API](static/img/api.png)
+
+### 1. **Accounts**
+
+- **List Accounts**  
+  `GET /api/accounts/`  
+  Retrieves a list of all bank accounts.
+
+- **Retrieve Account**  
+  `GET /api/accounts/{id}/`  
+  Retrieves details for a specific bank account by ID.
+
+- **Create Account** - Django REST Framework 3.14.0
+  `POST /api/accounts/`  
+  Creates a new bank account.
+
+- **Update Account**  
+  `PUT /api/accounts/{id}/`  
+  Updates an existing bank account by ID.
+
+- **Delete Account**  
+  `DELETE /api/accounts/{id}/`  
+  Deletes a specific bank account by ID.
+
+### 2. **Users**
+
+- **List Users**  
+  `GET /api/users/`  
+  Retrieves a list of all users.
+
+- **Retrieve User**  
+  `GET /api/users/{id}/`  
+  Retrieves details for a specific user by ID.
+
+- **Create User**  
+  `POST /api/users/`  
+  Creates a new user.
+
+- **Update User**  
+  `PUT /api/users/{id}/`  
+  Updates an existing user by ID.
+
+- **Delete User**  
+  `DELETE /api/users/{id}/`  
+  Deletes a specific user by ID.
+
+### 3. **Customers**
+
+- **List Customers**  
+  `GET /api/customers/`  
+  Retrieves a list of all customers.
+
+- **Retrieve Customer**  
+  `GET /api/customers/{id}/`  
+  Retrieves details for a specific customer by ID.
+
+- **Create Customer**  
+  `POST /api/customers/`  
+  Creates a new customer.
+
+- **Update Customer**  
+  `PUT /api/customers/{id}/`  
+  Updates an existing customer by ID.
+
+- **Delete Customer**  
+  `DELETE /api/customers/{id}/`  
+  Deletes a specific customer by ID.
 
 ## Purpose
 
@@ -28,9 +102,9 @@ The main purpose of this application is to demonstrate my ability to use Django 
 
 - Python 3.12
 - Django 5.0
+- Django REST Framework 3.14.0
 - SQLite (or any other supported database)
 - Virtualenv (recommended for creating isolated environments)
-
 
 ## Setup Instructions
 
