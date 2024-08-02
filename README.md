@@ -9,6 +9,9 @@ This project is a basic Django application that simulates the creation and manag
 - **Account Management**: Users can view details of existing accounts, update account information, and manage account balances.
 - **Transaction History**: Basic functionality to track deposits, withdrawals, and transfers between accounts.
 - **User Authentication**: Users can log in and log out using Django's built-in authentication system.
+## Preview
+
+![Preview Image](static/img/sample.png)
 
 ## Purpose
 
@@ -27,6 +30,7 @@ The main purpose of this application is to demonstrate my ability to use Django 
 - Django 5.0
 - SQLite (or any other supported database)
 - Virtualenv (recommended for creating isolated environments)
+
 
 ## Setup Instructions
 
