@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %} {% block content %}
+<div class="container mt-2 justify-content-center">
+  <h1 class="text-primary fw-bold fs-3 text-center">Bienvenue sur WeezBank</h1>
+  <h2 class="text-secundary text-center mb-4">
+    La meilleure Banque du monde pour assurer les comptes de Weezevent
+  </h2>
+
+  <div class="text-center">
+    {% if user.is_authenticated %}
+    <h3>Hello {{user.username}} !</h3>
+    {% endif %} {% if account %}
+
+    <h4>You have have an account already:{{account.iban}}</h4>
+    <button
+      onclick="
+      var accountId = '{{ account.id }}'
+      window.location.href='detail/'+ accountId"
+      id="check_account"
+      class="btn btn-primary"
+    >
+      check your account
+    </button>
+    {% endif %} {% if not account %}
+    <h3>You don't have an account yet.</h3>
+    <button id="create_account" class="btn btn-primary">
+      Create an account
+    </button>
+    {% endif %}
+
+    <script>
+      document
+        .getElementById("create_account")
+        .addEventListener("click", function () {
+          window.location = "create";
+        });
+    </script>
+  </div>
+</div>
+{% endblock %}

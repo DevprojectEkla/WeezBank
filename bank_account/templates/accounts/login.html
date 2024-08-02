@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %} {% block content %}
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card p-4" style="max-width: 400px; width: 100%;">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" id="id_username" required />
+            </div>
+            <div>
+                <label for="id_password">Password:</label>
+                <input type="password" name="password" id="id_password" required />
+            </div>
+            {% if form.errors %}
+            <div class="error-messages">
+                <ul>
+                    {% for field in form %} {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <div>
+                <button class="btn btn-primary mb4  " type="submit">Login</button>
+            </div>
+        </form>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
+    </div>
+</div>
+{% endblock %}
